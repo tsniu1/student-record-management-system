@@ -3,13 +3,7 @@ package com.sms;
 import java.io.*;
 import java.util.*;
 
-/**
- * Handles student persistence via Java Object Serialization.
- * Uses {@link ObjectOutputStream} for writing the entire list as a single
- * serialised object, and {@link ObjectInputStream} to restore it.
- *
- * Both streams are buffered to improve I/O performance.
- */
+
 public class SerialFileHandler {
 
     private final String filePath;
@@ -18,13 +12,7 @@ public class SerialFileHandler {
         this.filePath = filePath;
     }
 
-    // ── Write all ─────────────────────────────────────────────────────────────
-
-    /**
-     * Serialises the complete student list to the .ser file.
-     *
-     * @param students list to persist
-     */
+    
     @SuppressWarnings("unchecked")
     public void writeAll(List<Student> students) {
         try (ObjectOutputStream oos = new ObjectOutputStream(
@@ -37,13 +25,7 @@ public class SerialFileHandler {
         }
     }
 
-    // ── Read all ──────────────────────────────────────────────────────────────
-
-    /**
-     * De-serialises the student list from the .ser file.
-     *
-     * @return list of students; empty list if file is absent or corrupted
-     */
+    
     @SuppressWarnings("unchecked")
     public List<Student> readAll() {
         File file = new File(filePath);
