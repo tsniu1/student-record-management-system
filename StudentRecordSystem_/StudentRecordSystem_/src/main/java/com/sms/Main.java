@@ -4,7 +4,6 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class Main {
 
     private static final Scanner IN = new Scanner(System.in);
@@ -12,7 +11,7 @@ public class Main {
     private static StudentService   service;
     private static BackupManager    backup;
 
-   ────────────────────────────────────────────────────────────────────────
+ 
 
     public static void main(String[] args) {
 
