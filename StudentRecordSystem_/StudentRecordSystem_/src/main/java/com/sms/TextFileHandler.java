@@ -3,14 +3,7 @@ package com.sms;
 import java.io.*;
 import java.util.*;
 
-/**
- * Handles student persistence using plain text files.
- * Uses {@link Scanner} for reading and {@link PrintWriter} for writing,
- * both wrapped in {@link BufferedReader}/{@link BufferedWriter} for efficiency.
- *
- * File format (one record per line):
- *   StudentID|Name|Department|GPA
- */
+
 public class TextFileHandler {
 
     private final String filePath;
@@ -19,13 +12,7 @@ public class TextFileHandler {
         this.filePath = filePath;
     }
 
-    // ── Read all ──────────────────────────────────────────────────────────────
-
-    /**
-     * Reads all student records from the text file.
-     *
-     * @return list of students; empty list if file is absent or empty
-     */
+    
     public List<Student> readAll() {
         List<Student> students = new ArrayList<>();
         File file = new File(filePath);
@@ -37,7 +24,7 @@ public class TextFileHandler {
         try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(file)))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
-                if (!line.isEmpty() && !line.startsWith("#")) {   // skip blanks / comments
+                if (!line.isEmpty() && !line.startsWith("#")) {   
                     try {
                         students.add(Student.fromTextLine(line));
                     } catch (IllegalArgumentException e) {
@@ -52,13 +39,7 @@ public class TextFileHandler {
         return students;
     }
 
-    // ── Write all ─────────────────────────────────────────────────────────────
-
-    /**
-     * Overwrites the text file with the supplied list of students.
-     *
-     * @param students list to persist
-     */
+    
     public void writeAll(List<Student> students) {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(filePath)))) {
             writer.println("# Student Records - Text File");
@@ -73,9 +54,7 @@ public class TextFileHandler {
         }
     }
 
-    // ── Convenience CRUD helpers ──────────────────────────────────────────────
-
-    /** Appends a single student to the existing file. */
+    
     public void append(Student student) {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(filePath, true)))) {
             writer.println(student.toTextLine());
