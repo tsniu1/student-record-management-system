@@ -3,16 +3,7 @@ package com.sms;
 import java.util.*;
 import java.util.stream.*;
 
-/**
- * Generates statistical reports from the in-memory student list.
- *
- * Report includes:
- *   - Total number of students
- *   - Student with the highest GPA
- *   - Student with the lowest GPA
- *   - Average GPA across all students
- *   - Department breakdown
- */
+
 public class ReportGenerator {
 
     private final List<Student> students;
@@ -21,9 +12,7 @@ public class ReportGenerator {
         this.students = students;
     }
 
-    // ── Report generation ─────────────────────────────────────────────────────
-
-    /** Prints the full statistical report to standard output. */
+    
     public void generate() {
         System.out.println("\n" + "=".repeat(65));
         System.out.println("              STUDENT RECORD MANAGEMENT SYSTEM");
@@ -66,7 +55,7 @@ public class ReportGenerator {
         System.out.println("=".repeat(65));
     }
 
-    // ── Statistics ────────────────────────────────────────────────────────────
+    
 
     public int getTotalStudents() {
         return students.size();
