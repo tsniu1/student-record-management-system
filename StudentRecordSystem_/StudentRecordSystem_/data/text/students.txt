@@ -1,0 +1,14 @@
+# Student Records - Text File
+# Format: ID|Name|Department|GPA
+# Generated: 2026-06-16
+
+S001|Alice Johnson|Computer Science|3.9
+S002|Bob Martinez|Electrical Eng|3.45
+S003|Carol White|Mathematics|3.78
+S004|David Brown|Physics|2.95
+S005|Eve Thompson|Computer Science|3.55
+S006|Frank Wilson|Chemistry|2.8
+S007|Grace Lee|Mathematics|3.92
+S008|Hank Davis|Electrical Eng|3.1
+S009|Ivy Anderson|Physics|3.67
+S010|Jake Taylor|Chemistry|2.5
