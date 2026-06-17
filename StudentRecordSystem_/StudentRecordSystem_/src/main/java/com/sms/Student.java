@@ -2,10 +2,7 @@ package com.sms;
 
 import java.io.Serializable;
 
-/**
- * Student entity class.
- * Implements Serializable to support object serialization (ObjectInputStream / ObjectOutputStream).
- */
+
 public class Student implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -15,7 +12,6 @@ public class Student implements Serializable {
     private String department;
     private double gpa;
 
-    // ── Constructors ──────────────────────────────────────────────────────────
 
     public Student() {}
 
@@ -26,7 +22,7 @@ public class Student implements Serializable {
         this.gpa        = gpa;
     }
 
-    // ── Getters & Setters ─────────────────────────────────────────────────────
+
 
     public String getStudentId()              { return studentId;  }
     public void   setStudentId(String id)     { this.studentId = id; }
@@ -40,19 +36,12 @@ public class Student implements Serializable {
     public double getGpa()                    { return gpa; }
     public void   setGpa(double gpa)          { this.gpa = gpa; }
 
-    // ── Helpers ───────────────────────────────────────────────────────────────
-
-    /**
-     * Returns a pipe-delimited line suitable for text-file storage.
-     * Format: ID|Name|Department|GPA
-     */
+    
     public String toTextLine() {
         return studentId + "|" + name + "|" + department + "|" + gpa;
     }
 
-    /**
-     * Reconstructs a Student from a pipe-delimited text line.
-     */
+    
     public static Student fromTextLine(String line) {
         String[] parts = line.split("\\|");
         if (parts.length != 4) {
@@ -74,7 +63,7 @@ public class Student implements Serializable {
         );
     }
 
-    /** Pretty-print a single student row for console tables. */
+   
     public String toTableRow() {
         return String.format("| %-10s | %-20s | %-20s | %-5.2f |",
             studentId, name, department, gpa);
