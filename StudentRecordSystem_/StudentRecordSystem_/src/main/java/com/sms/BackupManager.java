@@ -4,12 +4,7 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/**
- * Creates a timestamped, human-readable backup of the master text file.
- *
- * Uses {@link BufferedReader} and {@link BufferedWriter} exclusively,
- * demonstrating Buffered Streams as required by the specification.
- */
+
 public class BackupManager {
 
     private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -22,14 +17,7 @@ public class BackupManager {
         this.backupFile = backupFile;
     }
 
-    // ── Backup ────────────────────────────────────────────────────────────────
-
-    /**
-     * Copies the source text file to the backup location, prepending a header
-     * that records the timestamp and original file path.
-     *
-     * @return true if the backup succeeded, false otherwise
-     */
+    
     public boolean backup() {
         File src = new File(sourceFile);
         if (!src.exists()) {
@@ -40,8 +28,8 @@ public class BackupManager {
         try (BufferedReader reader = new BufferedReader(new FileReader(src));
              BufferedWriter writer = new BufferedWriter(new FileWriter(backupFile))) {
 
-            // Write backup header
-            writer.write("# ============================================================");
+            
+            writer.write("# ==");
             writer.newLine();
             writer.write("# BACKUP - Student Record Management System");
             writer.newLine();
@@ -49,10 +37,10 @@ public class BackupManager {
             writer.newLine();
             writer.write("# Source File      : " + src.getAbsolutePath());
             writer.newLine();
-            writer.write("# ============================================================");
+            writer.write("# ==");
             writer.newLine();
 
-            // Copy source content
+       
             String line;
             int lineCount = 0;
             while ((line = reader.readLine()) != null) {
@@ -70,13 +58,7 @@ public class BackupManager {
         }
     }
 
-    // ── Restore ───────────────────────────────────────────────────────────────
-
-    /**
-     * Restores the source text file from the backup, skipping the backup header lines.
-     *
-     * @return true if restore succeeded, false otherwise
-     */
+    
     public boolean restore() {
         File bak = new File(backupFile);
         if (!bak.exists()) {
@@ -91,11 +73,11 @@ public class BackupManager {
             boolean skipHeader = true;
 
             while ((line = reader.readLine()) != null) {
-                // Skip lines that are part of the backup header (===... and # BACKUP ...)
+                
                 if (skipHeader && line.startsWith("#")) {
                     continue;
                 }
-                skipHeader = false;         // first non-header line encountered
+                skipHeader = false;         
                 writer.write(line);
                 writer.newLine();
             }
