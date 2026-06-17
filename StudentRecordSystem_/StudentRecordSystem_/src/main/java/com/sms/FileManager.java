@@ -4,21 +4,14 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Utility class that handles all filesystem bootstrap tasks using java.io.File.
- *
- * Responsibilities:
- *  - Ensure the data/ and backup/ directories exist (created automatically if absent).
- *  - Provide canonical paths for each storage file.
- *  - Display file metadata (name, absolute path, size, last-modified date).
- */
+
 public class FileManager {
 
-    // ── Directory paths ───────────────────────────────────────────────────────
+    
     public static final String DATA_DIR   = "data";
     public static final String BACKUP_DIR = "backup";
 
-    // ── File names ────────────────────────────────────────────────────────────
+    
     public static final String TEXT_FILE   = DATA_DIR   + File.separator + "students.txt";
     public static final String BINARY_FILE = DATA_DIR   + File.separator + "students.dat";
     public static final String SERIAL_FILE = DATA_DIR   + File.separator + "students.ser";
@@ -26,17 +19,12 @@ public class FileManager {
 
     private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    // ── Initialisation ────────────────────────────────────────────────────────
-
-    /**
-     * Creates the data/ and backup/ directories (and placeholder files) if they
-     * do not already exist.  Called once at application start-up.
-     */
+   
     public static void initialise() {
         createDirectory(DATA_DIR);
         createDirectory(BACKUP_DIR);
 
-        // Touch the text file so it exists for first-run displays
+        
         ensureFileExists(TEXT_FILE);
     }
 
@@ -64,11 +52,7 @@ public class FileManager {
         }
     }
 
-    // ── File properties display ───────────────────────────────────────────────
-
-    /**
-     * Prints metadata for every managed file using the java.io.File API.
-     */
+   
     public static void displayAllFileProperties() {
         System.out.println("\n" + "=".repeat(65));
         System.out.println("  FILE PROPERTIES");
@@ -79,12 +63,7 @@ public class FileManager {
         displayProperties(new File(BACKUP_FILE),  "Backup File");
     }
 
-    /**
-     * Prints metadata for a single file.
-     *
-     * @param file  the File to inspect
-     * @param label human-readable label
-     */
+   
     public static void displayProperties(File file, String label) {
         System.out.println("\n  " + label + ":");
         System.out.println("  ├─ Name          : " + file.getName());
