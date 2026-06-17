@@ -4,17 +4,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Entry point for the Student Record Management System.
- *
- * Presents an interactive console menu that exercises:
- *   - Text File I/O   (Scanner / PrintWriter)
- *   - Binary File I/O (DataInputStream / DataOutputStream)
- *   - Object Serialization (ObjectInputStream / ObjectOutputStream)
- *   - Buffered Stream backup
- *   - File class utilities (directory creation, file properties)
- *   - Statistical reporting
- */
+
 public class Main {
 
     private static final Scanner IN = new Scanner(System.in);
@@ -22,16 +12,14 @@ public class Main {
     private static StudentService   service;
     private static BackupManager    backup;
 
-    // ─────────────────────────────────────────────────────────────────────────
-    //  Bootstrap
-    // ─────────────────────────────────────────────────────────────────────────
+   ────────────────────────────────────────────────────────────────────────
 
     public static void main(String[] args) {
 
-        // 1. Ensure required directories & files exist (uses java.io.File)
+
         FileManager.initialise();
 
-        // 2. Wire up handlers
+
         TextFileHandler   textHandler   = new TextFileHandler(FileManager.TEXT_FILE);
         BinaryFileHandler binaryHandler = new BinaryFileHandler(FileManager.BINARY_FILE);
         SerialFileHandler serialHandler = new SerialFileHandler(FileManager.SERIAL_FILE);
@@ -39,17 +27,15 @@ public class Main {
         service = new StudentService(textHandler, binaryHandler, serialHandler);
         backup  = new BackupManager(FileManager.TEXT_FILE, FileManager.BACKUP_FILE);
 
-        // 3. Seed demo data on first run
+        
         seedDemoData();
 
-        // 4. Start interactive menu loop
+        
         System.out.println("\n  Welcome to the Student Record Management System");
         menuLoop();
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    //  Menu loop
-    // ─────────────────────────────────────────────────────────────────────────
+  ──
 
     private static void menuLoop() {
         boolean running = true;
@@ -91,9 +77,7 @@ public class Main {
         System.out.println("─".repeat(45));
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    //  Sub-menus
-    // ─────────────────────────────────────────────────────────────────────────
+   
 
     private static void menuAddStudent() {
         System.out.println("  ── Add Student ──");
@@ -194,9 +178,7 @@ public class Main {
         printStudentList(fromSerial, "Serial file");
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    //  Helpers
-    // ─────────────────────────────────────────────────────────────────────────
+    
 
     private static void printStudentList(List<Student> list, String label) {
         System.out.println("\n  " + label + " (" + list.size() + " record(s)):");
@@ -221,7 +203,7 @@ public class Main {
         System.out.println(sep);
     }
 
-    /** Reads a required non-blank string from stdin. */
+  
     private static String readString(String prompt) {
         while (true) {
             System.out.print(prompt);
@@ -231,13 +213,13 @@ public class Main {
         }
     }
 
-    /** Reads an optional string (returns blank if user presses ENTER). */
+   
     private static String readStringOptional(String prompt) {
         System.out.print(prompt);
         return IN.nextLine().trim();
     }
 
-    /** Reads an integer, re-prompting on invalid input. */
+    
     private static int readInt(String prompt) {
         while (true) {
             System.out.print(prompt);
@@ -249,7 +231,7 @@ public class Main {
         }
     }
 
-    /** Reads a double, re-prompting on invalid input. */
+ 
     private static double readDouble(String prompt) {
         while (true) {
             System.out.print(prompt);
@@ -261,15 +243,9 @@ public class Main {
         }
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    //  Demo data seeding
-    // ─────────────────────────────────────────────────────────────────────────
-
-    /**
-     * Seeds sample students on first run (when the data store is empty).
-     */
+    
     private static void seedDemoData() {
-        if (!service.getAll().isEmpty()) return;   // already has data
+        if (!service.getAll().isEmpty()) return;   
 
         System.out.println("  [Seed] Adding demo student records...");
         service.addStudent(new Student("S001", "Alice Johnson",   "Computer Science", 3.90));
