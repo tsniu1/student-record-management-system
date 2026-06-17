@@ -3,17 +3,7 @@ package com.sms;
 import java.io.*;
 import java.util.*;
 
-/**
- * Handles student persistence using binary files.
- * Uses {@link DataOutputStream} (wrapped in {@link BufferedOutputStream}) for writing
- * and {@link DataInputStream} (wrapped in {@link BufferedInputStream}) for reading.
- *
- * Binary record layout (per student, fixed order):
- *   UTF  – studentId
- *   UTF  – name
- *   UTF  – department
- *   double – gpa
- */
+
 public class BinaryFileHandler {
 
     private final String filePath;
@@ -22,18 +12,12 @@ public class BinaryFileHandler {
         this.filePath = filePath;
     }
 
-    // ── Write all ─────────────────────────────────────────────────────────────
-
-    /**
-     * Serialises all students to a binary file using DataOutputStream.
-     *
-     * @param students list to persist
-     */
+    
     public void writeAll(List<Student> students) {
         try (DataOutputStream dos = new DataOutputStream(
                 new BufferedOutputStream(new FileOutputStream(filePath)))) {
 
-            dos.writeInt(students.size());          // record count header
+            dos.writeInt(students.size());         
             for (Student s : students) {
                 dos.writeUTF(s.getStudentId());
                 dos.writeUTF(s.getName());
@@ -46,13 +30,7 @@ public class BinaryFileHandler {
         }
     }
 
-    // ── Read all ──────────────────────────────────────────────────────────────
-
-    /**
-     * De-serialises all students from the binary file using DataInputStream.
-     *
-     * @return list of students; empty list if file is absent or empty
-     */
+    
     public List<Student> readAll() {
         List<Student> students = new ArrayList<>();
         File file = new File(filePath);
